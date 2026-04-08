@@ -153,7 +153,8 @@ def render_data_explorer():
         sub3d = sub3d.groupby("VB", group_keys=False).apply(
             lambda g: g.sample(min(200, len(g)), random_state=0)
         )
-
+    st.write("Colonnes détectées :", sub3d.columns.tolist())
+    st.dataframe(sub3d.head())
     fig3d = px.scatter_3d(
         sub3d, x="Vc", y="fz", z="Ra",
         color="VB",
